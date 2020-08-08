@@ -1,0 +1,19 @@
+[Unit]
+Description=flask-sample
+After=network.target
+Documentation=https://github.com/damonchen/process-manager-sample
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/python3 /usr/local/sample/flask/index.py 0.0.0.0
+ExecStop=/bin/kill -s TERM $MAINPID
+PIDFile=/usr/local/sample/run/flask.pid
+TimeoutStopSec=0
+Restart=always
+User=vagrant
+Group=redis
+
+
+[Install]
+WantedBy=multi-user.target
+# Alias=flask-sample.service
